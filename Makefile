@@ -71,6 +71,9 @@ define Package/sing-box/config
 			bool "Build with Clash API support"
 			default y
 
+		config SINGBOX_WITH_CLOUDFLARED
+			bool "Build with Cloudflare Tunnel inbound support"
+
 		config SINGBOX_WITH_DHCP
 			bool "Build with DHCP support, see DHCP DNS transport."
 
@@ -87,6 +90,12 @@ define Package/sing-box/config
 		config SINGBOX_WITH_OCM
 			bool "Build with OpenAI Codex Multiplexer service support"
 
+		config SINGBOX_WITH_OPENCONNECT
+			bool "Build with OpenConnect client support"
+
+		config SINGBOX_WITH_OPENVPN
+			bool "Build with OpenVPN client and server support"
+
 		config SINGBOX_WITH_QUIC
 			bool "Build with QUIC support"
 			default y
@@ -94,6 +103,9 @@ define Package/sing-box/config
 		config SINGBOX_WITH_TAILSCALE
 			bool "Build with Tailscale support"
 			default y
+
+		config SINGBOX_WITH_USBIP
+			bool "Build with USB/IP service support"
 
 		config SINGBOX_WITH_UTLS
 			bool "Build with uTLS support for TLS outbound"
@@ -112,13 +124,17 @@ PKG_CONFIG_DEPENDS:= \
 	CONFIG_SINGBOX_WITH_ACME \
 	CONFIG_SINGBOX_WITH_CCM \
 	CONFIG_SINGBOX_WITH_CLASH_API \
+	CONFIG_SINGBOX_WITH_CLOUDFLARED \
 	CONFIG_SINGBOX_WITH_DHCP \
 	CONFIG_SINGBOX_WITH_EMBEDDED_TOR \
 	CONFIG_SINGBOX_WITH_GRPC \
 	CONFIG_SINGBOX_WITH_GVISOR \
 	CONFIG_SINGBOX_WITH_OCM \
+	CONFIG_SINGBOX_WITH_OPENCONNECT \
+	CONFIG_SINGBOX_WITH_OPENVPN \
 	CONFIG_SINGBOX_WITH_QUIC \
 	CONFIG_SINGBOX_WITH_TAILSCALE \
+	CONFIG_SINGBOX_WITH_USBIP \
 	CONFIG_SINGBOX_WITH_UTLS \
 	CONFIG_SINGBOX_WITH_V2RAY_API \
 	CONFIG_SINGBOX_WITH_WIREGUARD
@@ -133,13 +149,17 @@ GO_PKG_TAGS:=$(subst $(space),$(comma),$(strip \
 	$(if $(CONFIG_SINGBOX_WITH_ACME),with_acme) \
 	$(if $(CONFIG_SINGBOX_WITH_CCM),with_ccm) \
 	$(if $(CONFIG_SINGBOX_WITH_CLASH_API),with_clash_api) \
+	$(if $(CONFIG_SINGBOX_WITH_CLOUDFLARED),with_cloudflared) \
 	$(if $(CONFIG_SINGBOX_WITH_DHCP),with_dhcp) \
 	$(if $(CONFIG_SINGBOX_WITH_EMBEDDED_TOR),with_embedded_tor) \
 	$(if $(CONFIG_SINGBOX_WITH_GRPC),with_grpc) \
 	$(if $(CONFIG_SINGBOX_WITH_GVISOR),with_gvisor) \
 	$(if $(CONFIG_SINGBOX_WITH_OCM),with_ocm) \
+	$(if $(CONFIG_SINGBOX_WITH_OPENCONNECT),with_openconnect) \
+	$(if $(CONFIG_SINGBOX_WITH_OPENVPN),with_openvpn) \
 	$(if $(CONFIG_SINGBOX_WITH_QUIC),with_quic) \
 	$(if $(CONFIG_SINGBOX_WITH_TAILSCALE),with_tailscale) \
+	$(if $(CONFIG_SINGBOX_WITH_USBIP),with_usbip) \
 	$(if $(CONFIG_SINGBOX_WITH_UTLS),with_utls) \
 	$(if $(CONFIG_SINGBOX_WITH_V2RAY_API),with_v2ray_api) \
 	$(if $(CONFIG_SINGBOX_WITH_WIREGUARD),with_wireguard) \
